@@ -1,10 +1,10 @@
 # hypertextscriptinglanguage
 
-[![npm version](https://badge.fury.io/js/@romellogoodman%2Fhypertextscriptinglanguage.svg)](https://badge.fury.io/js/@romellogoodman%2Fhypertextscriptinglanguage)
+[![npm version](https://badge.fury.io/js/hypertextscriptinglanguage.svg)](https://badge.fury.io/js/hypertextscriptinglanguage)
 
 A library for scripting html.
 
-<!-- Demo: [Codesandbox Demo](https://codesandbox.io/s/hypertextscriptinglanguage-demo-kkzmg) -->
+Demo: [Codesandbox Demo](https://codesandbox.io/s/hypertextscriptinglanguage-demo-tnnh1t)
 
 ## Table of contents
 
