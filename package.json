@@ -13,9 +13,7 @@
     "@babel/preset-env": "^7.13.12",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.22.0",
-    "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.23.0",
     "husky": "^5.2.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
@@ -30,11 +28,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/romellogoodman/domscript.git"
+    "url": "https://github.com/romellogoodman/domscript.js"
   },
   "keywords": [
     "creative coding",
-    "flow fields"
+    "dom",
+    "html"
   ],
   "babel": {
     "presets": [
@@ -42,7 +41,9 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react",
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "plugins": [
       "prettier"
     ],
@@ -51,11 +52,6 @@
       "es6": true,
       "node": true,
       "jest": true
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
     },
     "rules": {
       "comma-dangle": 0,
@@ -72,6 +68,10 @@
       "space-before-function-paren": 0
     }
   },
+  "eslintIgnore": [
+    "dist",
+    "__tests__"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
