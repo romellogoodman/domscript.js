@@ -44,7 +44,7 @@ export default class DOM {
   }
 
   remove() {
-    const selector = `${this.container} .domscript`;
+    const selector = `${this.container} .hypertextscriptinglanguage`;
     const element = document.querySelector(selector);
 
     if (element) {
@@ -79,7 +79,7 @@ export default class DOM {
 
   markup() {
     return `
-      <html class="domscript">
+      <html class="hypertextscriptinglanguage">
         <head>
           ${this.head || '_head'}
         </head>

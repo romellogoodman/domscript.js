@@ -1,10 +1,10 @@
-# domscript
+# hypertextscriptinglanguage
 
-[![npm version](https://badge.fury.io/js/@romellogoodman%2Fdomscript.svg)](https://badge.fury.io/js/@romellogoodman%2Fdomscript)
+[![npm version](https://badge.fury.io/js/@romellogoodman%2Fhypertextscriptinglanguage.svg)](https://badge.fury.io/js/@romellogoodman%2Fhypertextscriptinglanguage)
 
 A library for scripting html.
 
-Demo: [Codesandbox Demo](https://codesandbox.io/s/domscript-demo-kkzmg)
+<!-- Demo: [Codesandbox Demo](https://codesandbox.io/s/hypertextscriptinglanguage-demo-kkzmg) -->
 
 ## Table of contents
 
@@ -19,13 +19,13 @@ Demo: [Codesandbox Demo](https://codesandbox.io/s/domscript-demo-kkzmg)
 npm
 
 ```
-npm i domscript
+npm i hypertextscriptinglanguage
 ```
 
 unpkg
 
 ```
-<script src="https://unpkg.com/domscript"></script>
+<script src="https://unpkg.com/hypertextscriptinglanguage"></script>
 ```
 
 ### Use

@@ -1,5 +1,5 @@
 {
-  "name": "domscript",
+  "name": "hypertextscriptinglanguage",
   "version": "0.0.0",
   "description": "A library for scripting html.",
   "scripts": {
@@ -21,14 +21,14 @@
     "prettier": "^2.2.1"
   },
   "source": "index.js",
-  "main": "dist/domscript.js",
-  "module": "dist/domscript.module.js",
-  "unpkg": "dist/domscript.umd.js",
+  "main": "dist/hypertextscriptinglanguage.js",
+  "module": "dist/hypertextscriptinglanguage.module.js",
+  "unpkg": "dist/hypertextscriptinglanguage.umd.js",
   "author": "Romello Goodman",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/romellogoodman/domscript.js"
+    "url": "https://github.com/romellogoodman/hypertextscriptinglanguage.js"
   },
   "keywords": [
     "creative coding",
@@ -85,5 +85,8 @@
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
