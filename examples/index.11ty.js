@@ -12,6 +12,8 @@ h1 {
 }
 `);
 
+page.title('hello world');
+
 page.h1(
   `
 hello world
