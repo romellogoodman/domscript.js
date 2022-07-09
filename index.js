@@ -1,16 +1,70 @@
-export default class DOM {
-  constructor({attributes, container, height, width} = {}) {
-    const funcs = ['add', 'draw', 'empty', 'markup', 'redraw', 'remove', 'tag'];
+const tags = require('./tags.json');
+
+/**
+ * Util Functions
+ */
+
+const convertAttributes = (attribs = {}) => {
+  let result = '';
+
+  Object.keys(attribs).forEach((attrib) => {
+    const property = attribs[attrib];
+
+    result += ` ${attrib}="${property}"`;
+  });
+
+  return result;
+};
+
+const buildMarkup = (list = []) => {
+  const markup = list.map((item) => {
+    const {tag, content, attributes} = item;
+
+    return `<${tag} ${convertAttributes(
+      attributes
+    )}>${content.trim()}</${tag}>`;
+  });
+
+  return markup.join('\n');
+};
+
+class SCRIPT {
+  constructor({container, fontSize} = {}) {
+    const funcs = [
+      'body',
+      'comment',
+      'draw',
+      'empty',
+      'head',
+      'markup',
+      'redraw',
+      'remove',
+      ...tags.head,
+      ...tags.body,
+    ];
+
+    // Create the functions for each tag
+    this._head = [];
+    this._body = [];
+
+    const createTagAPI = (location, list) => {
+      list.forEach((tag) => {
+        this[tag] = (content, attributes = {}) =>
+          this[location].push({tag, content, attributes});
+      });
+    };
+
+    createTagAPI('_head', tags.head);
+    createTagAPI('_body', tags.body);
 
     funcs.forEach((func) => {
-      this[func] = this[func].bind(this);
+      if (this[func]) {
+        this[func] = this[func].bind(this);
+      }
     });
 
-    this.contents = [];
-    this.height = height || 800;
-    this.width = width || 800;
+    this.fontSize = fontSize || 16;
     this.container = container || 'body';
-    this.attributes = attributes || {};
   }
 
   /**
@@ -27,18 +81,6 @@ export default class DOM {
     } else {
       console.log('WARN: no container');
     }
-
-    return this;
-  }
-
-  add(str) {
-    this.contents.push(str);
-
-    return this;
-  }
-
-  empty() {
-    this.contents = [];
 
     return this;
   }
@@ -65,28 +107,43 @@ export default class DOM {
     return this;
   }
 
-  /**
-   * Shapes Functions
-   */
+  empty() {
+    this.head = [];
+    this.body = [];
 
-  tag(tag, content, opts = {}) {
-    console.log(tag, content, opts);
+    return this;
   }
 
-  /**
-   * Helper Functions
-   */
+  head(tag, content, attributes = {}) {
+    this.head.push({tag, content, attributes});
+
+    return this;
+  }
+
+  body(tag, content, attributes = {}) {
+    this.body.push({tag, content, attributes});
+
+    return this;
+  }
+
+  comment(content) {
+    this.head.unshift(`<!-- ${content} -->`);
+  }
 
   markup() {
     return `
-      <html class="hypertextscriptinglanguage">
+      <html class="hypertextscriptinglanguage" style="font-size: ${
+        this.fontSize
+      }px;">
         <head>
-          ${this.head || '_head'}
+          ${buildMarkup(this._head)}
         </head>
         <body>
-          ${this.body || '_body'}
+          ${buildMarkup(this._body)}
         </body>
       </html>
       `;
   }
 }
+
+module.exports = SCRIPT;

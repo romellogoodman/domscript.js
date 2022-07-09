@@ -31,13 +31,73 @@ unpkg
 ### Use
 
 ```js
-// NOTE: tk
+const page = new SCRIPT();
+
+page.h1('hello world');
+
+const html = page.markup();
 ```
 
 ## API
 
-tk
+### `new SCRIPT(options)`
+
+Creates a new instance. `options` is a JavaScript object with the following properties:
+
+- `@param {String} container` Selector or DOM element used as container for the SVG. Defaults to 'body'.
+- `@param {Number} fontsize` The font size for the document. Defaults to 16.
+
+### `$tag(content, attributes)`
+
+The library supports a majorty of html tags as the primary interface. In the example above we create a `<h1>` tag with it's content and add it to the document's `<body>`. This function is a wrapper around `this.head` and `this.body`
+
+- `@param {String} content` The content of the element.
+- `@param {Object} attributes` Key value pairs of attributes to apply to the tag.
+
+### `head(tag, content, attributes)`
+
+Adds an element to the head of the document.
+
+- `@param {String} tag` The tag of the element.
+- `@param {String} content` The content of the element.
+- `@param {Object} attributes` Key value pairs of attributes to apply to the tag.
+
+### `body(tag, content, attributes)`
+
+Adds an element to the body of the document.
+
+- `@param {String} tag` The tag of the element.
+- `@param {String} content` The content of the element.
+- `@param {Object} attributes` Key value pairs of attributes to apply to the tag.
+
+### `comment(content)`
+
+Adds a comment to the head of the document.
+
+### `markup()`
+
+- `@return {String}` The html markup for the document.
+
+### `draw()`
+
+Draws the markup.
+
+### `remove()`
+
+Removes the markup.
+
+### `redraw()`
+
+Re-draws the markup.
+
+### `empty()`
+
+Empties the markup and resets the SCRIPT.
 
 ## Contributing
 
-All contributors and all contributions both big and small are welcome in this project.
+All contributors and all contributions both big and small are welcome in this project. The examples are built on top of [`Eleventy`](https://www.11ty.dev/) and can be run using:
+
+```sh
+npm run examples
+```
