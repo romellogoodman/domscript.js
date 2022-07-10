@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "test": "echo \"tests\"",
     "prepublish": "npm run lint && npm test && npm run build",
-    "examples": "eleventy --input=examples --serve"
+    "examples": "eleventy --input=examples --serve --port=3000"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
