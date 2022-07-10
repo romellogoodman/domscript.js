@@ -7,7 +7,7 @@ body {
   background: papayawhip;
 }
 
-h1 {
+.title {
   color: pink;
 }
 `);
@@ -16,7 +16,7 @@ page.title('hello world');
 
 page.h1(
   `
-hello world
+goodbye world
 `,
   {class: 'title'}
 );
