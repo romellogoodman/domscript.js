@@ -1,4 +1,4 @@
-const tags = require('./tags');
+import tags from './tags';
 
 /**
  * Util Functions

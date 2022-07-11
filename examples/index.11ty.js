@@ -1,4 +1,4 @@
-const SCRIPT = require('../index');
+const SCRIPT = require('../dist/hypertextscriptinglanguage');
 
 const page = new SCRIPT();
 

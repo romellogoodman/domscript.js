@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   head: ['style', 'title', 'meta'],
   body: [
     'a',

@@ -116,5 +116,7 @@ Empties the markup and resets the SCRIPT.
 All contributors and all contributions both big and small are welcome in this project. The examples are built on top of [`Eleventy`](https://www.11ty.dev/) and can be run using:
 
 ```sh
+npm run dev
+
 npm run examples
 ```
