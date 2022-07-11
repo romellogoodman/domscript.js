@@ -16,22 +16,11 @@ const convertAttributes = (attribs = {}) => {
   return result;
 };
 
-const buildMarkup = (list = []) => {
-  const markup = list.map((item) => {
-    const {tag, content, attributes} = item;
-
-    return `<${tag} ${convertAttributes(
-      attributes
-    )}>${content.trim()}</${tag}>`;
-  });
-
-  return markup.join('\n');
-};
-
 class SCRIPT {
   constructor({container, fontSize} = {}) {
     const funcs = [
       'body',
+      'buildMarkup',
       'comment',
       'draw',
       'empty',
@@ -44,19 +33,20 @@ class SCRIPT {
     ];
 
     // Create the functions for each tag
-    this._head = [];
-    this._body = [];
-
     const createTagAPI = (location, list) => {
       list.forEach((tag) => {
-        this[tag] = (content, attributes = {}) =>
+        this[tag] = (content, attributes = {}) => {
           this[location].push({tag, content, attributes});
+        };
       });
     };
 
+    this._head = [];
+    this._body = [];
     createTagAPI('_head', tags.head);
     createTagAPI('_body', tags.body);
 
+    // Bind functions to this
     funcs.forEach((func) => {
       if (this[func]) {
         this[func] = this[func].bind(this);
@@ -108,26 +98,74 @@ class SCRIPT {
   }
 
   empty() {
-    this.head = [];
-    this.body = [];
+    this._head = [];
+    this._body = [];
 
     return this;
   }
 
   head(tag, content, attributes = {}) {
-    this.head.push({tag, content, attributes});
+    this._head.push({tag, content, attributes});
 
     return this;
   }
 
   body(tag, content, attributes = {}) {
-    this.body.push({tag, content, attributes});
+    this._body.push({tag, content, attributes});
 
     return this;
   }
 
   comment(content) {
-    this.head.unshift(`<!-- ${content} -->`);
+    this._head.unshift(`<!-- ${content} -->`);
+  }
+
+  buildMarkup(listOfMarkup) {
+    const createNestedHTML = (list) => {
+      const nestedList = list.reduce((result, item) => {
+        if (Array.isArray(item.content)) {
+          // Access the result and pull the last x items
+          item.content = new Array(item.content.length)
+            .fill(null)
+            .map(() => result.pop())
+            .reverse();
+        }
+
+        result.push(item);
+
+        return result;
+      }, []);
+
+      return nestedList;
+    };
+    const createElements = (list) => {
+      const elements = list.reduce((result, item) => {
+        const {tag, content, attributes} = item;
+
+        if (!content) {
+          result.push(`<${tag} ${convertAttributes(attributes)} />`);
+        } else if (Array.isArray(content)) {
+          result.push(
+            `<${tag} ${convertAttributes(attributes)}>${createElements(
+              content
+            ).join('\n')}</${tag}>`
+          );
+        } else {
+          result.push(
+            `<${tag} ${convertAttributes(attributes)}>${content}</${tag}>`
+          );
+        }
+
+        return result;
+      }, []);
+
+      return elements;
+    };
+
+    const nestedMarkup = createNestedHTML(listOfMarkup);
+    const markup = createElements(nestedMarkup);
+
+    return markup.join('\n');
   }
 
   markup() {
@@ -136,10 +174,10 @@ class SCRIPT {
         this.fontSize
       }px;">
         <head>
-          ${buildMarkup(this._head)}
+          ${this.buildMarkup(this._head)}
         </head>
         <body>
-          ${buildMarkup(this._body)}
+          ${this.buildMarkup(this._body)}
         </body>
       </html>
       `;

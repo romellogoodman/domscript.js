@@ -54,6 +54,23 @@ The library supports a majorty of html tags as the primary interface. In the exa
 - `@param {String} content` The content of the element.
 - `@param {Object} attributes` Key value pairs of attributes to apply to the tag.
 
+Nesting can be created when content is passed an array `[]`.
+
+```js
+const page = new SCRIPT();
+
+page.ul([
+  //
+  page.li([
+    //
+    page.span('item'),
+    page.span('1'),
+  ]),
+  page.li('item 2'),
+  page.li('item 3'),
+]);
+```
+
 ### `head(tag, content, attributes)`
 
 Adds an element to the head of the document.

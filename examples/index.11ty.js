@@ -25,6 +25,17 @@ page.p(`
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed leo sed sem malesuada ullamcorper. Pellentesque ultrices felis eu neque scelerisque, et hendrerit ipsum vestibulum.
 `);
 
+page.ul([
+  //
+  page.li([
+    //
+    page.span('hello'),
+    page.span('world'),
+  ]),
+  page.li('item 2'),
+  page.li('item 3'),
+]);
+
 const html = page.markup();
 
 module.exports = html;
