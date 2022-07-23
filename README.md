@@ -44,7 +44,7 @@ const html = page.markup();
 
 Creates a new instance. `options` is a JavaScript object with the following properties:
 
-- `@param {String} container` Selector or DOM element used as container for the SVG. Defaults to 'body'.
+- `@param {String} container` Selector or DOM element used as container for the SVG. Defaults to 'html'.
 - `@param {Number} fontsize` The font size for the document. Defaults to 16.
 
 ### `$tag(content, attributes)`

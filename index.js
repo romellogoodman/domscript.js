@@ -54,7 +54,7 @@ class SCRIPT {
     });
 
     this.fontSize = fontSize || 16;
-    this.container = container || 'body';
+    this.container = container || 'html';
   }
 
   /**
