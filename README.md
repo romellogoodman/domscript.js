@@ -1,3 +1,7 @@
+> NOTE:
+> This package is in hibernation mode.
+> The core of its functionality has been added to [goodgraphics.js](https://github.com/romellogoodman/goodgraphics.js).
+
 # hypertextscriptinglanguage
 
 [![npm version](https://badge.fury.io/js/hypertextscriptinglanguage.svg)](https://badge.fury.io/js/hypertextscriptinglanguage)
